@@ -1,22 +1,28 @@
 package Sofka.com;
 
 import java.util.*;
-import java.util.List;
-import java.util.stream.Collectors;
+/**
+ *Clase para definir comportamientos del reproductor
+ * @author Angela Julieth Ossa Cuellar
+ */
 
-public class MediaPlayer {
+public class MediaPlayer{
     public static UUID id = UUID.randomUUID();
     public static PlayList currentPlaylist;
-    public static ArrayList<PlayList> playLists = new ArrayList<PlayList>();
+    public static ArrayList<PlayList> playLists = new ArrayList<>();
+    public static ArrayList<PlayList> sortSongList = new ArrayList<>();
 
-
+    /**
+     * metodos getter and setter de la clase
+     * @return
+     */
 
     public UUID getId() {
         return id;
     }
 
     public void setId(UUID id) {
-        this.id = id;
+        MediaPlayer.id = id;
     }
 
     public ArrayList<PlayList> getPlayLists() {
@@ -24,138 +30,203 @@ public class MediaPlayer {
     }
 
     public void setPlayLists(ArrayList<PlayList> playLists) {
-        this.playLists = playLists;
+        MediaPlayer.playLists = playLists;
     }
 
     public void createPlaylist(String name){
-        this.currentPlaylist = new PlayList(name);
+        currentPlaylist = new PlayList(name);
     }
 
+    /**
+     * metodo para dar un alto y continuar a los menus
+     */
     public static void next () {
-        System.out.println("enter any key to continue");
-        Scanner sc = new Scanner(System.in);
-        String response = sc.next();
-        run();
-    }
-
-    private  static void createPlayList() {
-        System.out.println("we are under construction of your Playlist");
-        System.out.println("please, enter the list name");
-        Scanner listName = new Scanner(System.in);
-        String listNameStr = listName.nextLine();
-        PlayList newPlayList = new PlayList(listNameStr);
-        playLists.add(newPlayList);
-        next();
-    }
-
-    private  static void  seePlayLists() {
-        System.out.println("these are your lists");
-        System.out.println("-----------------------------------------------------");
-        if(playLists.size() > 0){
-            playLists.stream().forEach(item -> System.out.println(item.getName()));
-        }
-        else{
-            System.out.println("You don't have any List, please go to create one");
-        }
-        System.out.println("-----------------------------------------------------");
-        next();
-    }
-
-    private static void  pickAPlayList() {
-        System.out.println("Please pick one list");
-        for (int i = 0; i < playLists.size(); i++){
-            System.out.println(i + ") " + playLists.get(i).getName());
-        }
-        Scanner indexList = new Scanner(System.in);
-        int indexListInt = Integer.valueOf(indexList.nextLine());
-        currentPlaylist = playLists.get(indexListInt);
-        next();
-    }
-
-    private static void mainMenu(){
-        System.out.println("Welcome to the Media Player");
-        System.out.println("Select the desired option");
-
-        System.out.println("1. Create your Playlist");
-        System.out.println("2. view your Playlists");
-        if(playLists.size() > 0){
-            System.out.println("3. pick Playlists");
-        }
-
-        System.out.println("0. Exit");
-
-        Scanner sc = new Scanner(System.in);
-        String option = sc.nextLine();
-
-        switch (option) {
-            case "1":
-                createPlayList();
-                break;
-            case "2":
-                seePlayLists();
-                break;
-            case "3":
-                pickAPlayList();
-                break;
-            case "0":
-                System.out.println("Thank you for you visit");
-                break;
-            default:
-                System.out.println("Please select a correct answer");
-                next();
+        try {
+            System.out.println("enter any key to continue");
+            Scanner sc = new Scanner(System.in);
+            String response = sc.next();
+            run();
+        }catch (Exception e) {
+            System.out.println("se produjo error de conexion");
         }
     }
 
-    private static  void playListMenu() {
-        System.out.println("You are on " + currentPlaylist.getName() + " playList");
-        System.out.println("Please choose an option");
-        System.out.println("-----------------------------------------------------");
-        System.out.println("1. Add song");
-        System.out.println("2. Remove song");
-        System.out.println("3. See songs");
-        System.out.println("0. Go back");
-        System.out.println("-----------------------------------------------------");
-        Scanner sc = new Scanner(System.in);
-        String option = sc.nextLine();
-        switch (option) {
-            case "1":
-                System.out.println("Choose the song that you want to add");
-                System.out.println("-----------------------------------------------------");
-                ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
-                for (int i = 0; i < availableSongs.size();i++){
-                    System.out.println(i + ". " + availableSongs.get(i).getNameSong());
-                }
-                System.out.println("-----------------------------------------------------");
-                Scanner addSongScaner = new Scanner(System.in);
-                int addSongIndex = Integer.valueOf(addSongScaner.nextLine());
-                currentPlaylist.addSong(availableSongs.get(addSongIndex));
-                System.out.println("the song is added");
-                next();
-                break;
-            case "2":
-                seePlayLists();
-                break;
-            case "3":
-                pickAPlayList();
-                break;
-            case "0":
-                System.out.println("Going back....");
-                currentPlaylist = null;
-                next();
-                break;
-            default:
-                System.out.println("Please select a correct answer");
-                next();
+    /**
+     * metodo para construir el arreglo donde se incluye la playlist
+     */
+         public static void createPlayList() {
+        try {
+            System.out.println("we are under construction of your Playlist");
+            System.out.println("please, enter the list name");
+            Scanner listName = new Scanner(System.in);
+            String listNameStr = listName.nextLine();
+            PlayList newPlayList = new PlayList(listNameStr);
+            playLists.add(newPlayList);
+            next();
+        } catch (Exception e) {
+            System.out.println("se produjo error de conexion");
         }
-
     }
 
+    /**
+     * metodo para ver la playlis´s creadas
+     */
+    public static void  seePlayLists() {
+        try {
+            System.out.println("these are your lists");
+            System.out.println("-----------------------------------------------------");
+            if (playLists.size() > 0) {
+                playLists.forEach(item -> System.out.println(item.getName()));
+            } else {
+                System.out.println("You don't have any List, please go to create one");
+            }
+            System.out.println("-----------------------------------------------------");
+            next();
+        } catch (Exception e) {
+            System.out.println("se produjo error de conexion");
+        }
+    }
+
+    /**
+     * metodo que muestra las listas de caniones en la playlist
+     */
+    public static void  seeSongPlayLists() {
+        try {
+            System.out.println("these are your Song");
+            System.out.println("-----------------------------------------------------");
+            if (currentPlaylist.songList.size() > 0) {
+                currentPlaylist.songList.forEach(item -> System.out.println(item.getNameSong()+" created in " + item.getCreationDate()+ " Genre " +item.getGenre()));
+            } else {
+                System.out.println("You don't have any Song, please go to insert one");
+            }
+            System.out.println("-----------------------------------------------------");
+            next();
+        } catch (Exception e) {
+            System.out.println("se produjo error de conexion");
+        }
+    }
+
+    /**
+     * metodo que escoge o selecciona la playlist
+     */
+    public static void  pickAPlayList() {
+        try {
+            System.out.println("Please pick one list");
+            for (int i = 0; i < playLists.size(); i++) {
+                System.out.println(i + ") " + playLists.get(i).getName());
+            }
+            Scanner indexList = new Scanner(System.in);
+            int indexListInt = Integer.parseInt(indexList.nextLine());
+            currentPlaylist = playLists.get(indexListInt);
+            next();
+        }catch (Exception e) {
+            System.out.println("se produjo error de conexion");
+        }
+    }
+
+    /**
+     * metodo que permite escoger las canciones pre existentes a una playlist
+     */
+    public static void chooseTheSong(){
+        try {
+            System.out.println("Choose the song that you want to add");
+            System.out.println("-----------------------------------------------------");
+            ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+            for (int i = 0; i < availableSongs.size(); i++) {
+                System.out.println(i + ". " + availableSongs.get(i).getNameSong() + " Created in " + availableSongs.get(i).getCreationDate()+" Genre "+availableSongs.get(i).getGenre());
+            }
+            System.out.println("-----------------------------------------------------");
+            Scanner addSongScaner = new Scanner(System.in);
+            int addSongIndex = Integer.parseInt(addSongScaner.nextLine());
+            currentPlaylist.addSong(availableSongs.get(addSongIndex));
+            System.out.println("the song is added");
+            next();
+        }catch (Exception e) {
+            System.out.println("se produjo error de conexion");
+        }
+    }
+
+    /**
+     * metodo que da inicio a la aplicación
+     */
     public static void run() {
+        try{
         if (currentPlaylist == null) {
-            mainMenu();
+            Menus.mainMenu();
         } else {
-            playListMenu();
+            Menus.playListMenu();
+        }
+    }catch (Exception e) {
+            System.out.println("se produjo error de conexion");
         }
     }
+
+    /**
+     * metodo para filtrar las canciones por año
+     */
+    public static void filterTheSongByYear(){
+        try {
+
+            System.out.println("_____________________________________________________");
+            System.out.println("enter the year of your songs");
+            System.out.println("_____________________________________________________");
+            Scanner yr = new Scanner(System.in);
+            String year = yr.nextLine();
+            System.out.println("these are your Song");
+            System.out.println("-----------------------------------------------------");
+            currentPlaylist.getByCreationDate(year).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() ));
+            System.out.println("-----------------------------------------------------");
+            next();
+        } catch (Exception e) {
+            System.out.println("se produjo error de conexion");
+        }
+    }
+    /**
+     * metodo para filtrar las canciones por genero
+     */
+
+    public static void filterTheSongByGenre(){
+        try {
+
+            System.out.println("_____________________________________________________");
+            System.out.println("enter the genre of your songs in capital letters");
+            System.out.println("_____________________________________________________");
+            Scanner gr = new Scanner(System.in);
+            String genre = gr.nextLine();
+            System.out.println("these are your Song");
+            System.out.println("-----------------------------------------------------");
+            currentPlaylist.getByGenre(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+            System.out.println("-----------------------------------------------------");
+            next();
+        } catch (Exception e) {
+            System.out.println("se produjo error de conexion");
+        }
+
+    }
+    /**
+     * metodo para ordenar la lista por año
+     */
+    public static void orderByYear(){
+
+        System.out.println("these are your Song");
+        System.out.println("-----------------------------------------------------");
+        currentPlaylist.sortSongList("year").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+        next();
+    }
+
+    /**
+     * metodo para ordenar la lista por Duration
+     */
+    public static void orderByDuration(){
+
+        System.out.println("these are your Song");
+        System.out.println("-----------------------------------------------------");
+        currentPlaylist.sortSongList("duration").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+        next();
+    }
+
+
+
+
 }
 

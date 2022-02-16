@@ -6,8 +6,8 @@
 package Sofka.com;
 
 /**
- *
- * @author jupag
+ *Clase Main
+ * @author Angela Julieth Ossa
  */
 public class Main {
 
@@ -15,8 +15,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic
-        MediaPlayer.run();
+/**
+ *Ejecución del metodo que da el punto de partida de la aplicación
+ */
+    MediaPlayer.run();
     }
     
 }

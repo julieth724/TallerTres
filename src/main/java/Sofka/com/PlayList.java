@@ -7,7 +7,18 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
+
+/**
+ *Clase para definir comportamientos de la play list
+ * @author Angela Julieth Ossa Cuellar
+ */
+
 public class PlayList {
+    /**
+     * Definicion de atributos de la clase
+     */
+
     public UUID id;
     public String name;
     public ArrayList<Song> songList;
@@ -21,8 +32,13 @@ public class PlayList {
     public PlayList(String name) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.songList = new ArrayList<Song>();
+        this.songList = new ArrayList<>();
     }
+
+    /**
+     * Getter and Setter de la clase
+     * @return retorna parametro
+     */
 
     public UUID getId() {
         return id;
@@ -43,36 +59,41 @@ public class PlayList {
      this.songList.add(song);
     }
 
-    public void removeSong (Song song){
-        this.songList.remove(song);
-    }
+    /**
+     * Metodo para ordenar cancion por año y por duración
+     * @param type duration
+     * @return la comparacíon
+     */
 
     public ArrayList<Song> sortSongList (String type) {
-        if (type == "duration") {
-            this.songList.sort(new Comparator<Song>() {
-                @Override
-                public int compare(Song o1, Song o2) {
-                    String nDuration1 = String.valueOf(o1.getDuration());
-                    String nDuration2 = String.valueOf(o2.getDuration());
-                    return nDuration1.compareTo(nDuration2);
-                }
+        if (type.equals("duration")) {
+            this.songList.sort((o1, o2) -> {
+                String nDuration1 = String.valueOf(o1.getDuration());
+                String nDuration2 = String.valueOf(o2.getDuration());
+                return nDuration1.compareTo(nDuration2);
             });
-        } else if (type == "year") {
-            this.songList.sort(new Comparator<Song>() {
-                @Override
-                public int compare(Song o1, Song o2) {
-                    return o1.getCreationDate().compareTo(o2.getCreationDate());
-                }
-            });
+        } else if (type.equals("year")) {
+            this.songList.sort(Comparator.comparing(Song::getCreationDate));
         }
-        return null;
+        return this.songList;
     }
+
+    /**
+     * Metodo para filtra por genero
+     * @param genre
+     * @return arreglo con canciones filtradas
+     */
+
     public ArrayList<Song> getByGenre (String genre){
-        List<Song> listSong = this.songList.stream().filter(song-> song.getGenre() == genre).collect(Collectors.toList());
-       return new ArrayList<Song>(listSong);
+        List<Song> listSong = this.songList.stream().filter(song-> song.getGenre().equals(genre)).collect(toList());
+       return new ArrayList<>(listSong);
     }
+    /**
+     * Metodo para filtra por Año
+     * @param creationDate
+     * @return arreglo con canciones filtradas
+     */
     public ArrayList<Song> getByCreationDate (String creationDate){
-        List<Song> listSong = this.songList.stream().filter(song-> song.getCreationDate() == creationDate).collect(Collectors.toList());
-        return new ArrayList<Song>(listSong);
+        return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
     }
 }

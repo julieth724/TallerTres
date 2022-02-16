@@ -2,10 +2,11 @@ package Sofka.com;
 import java.util.Date;
 
 /**
- *
- * @author jupag
+ *Clase de interfaz
+ * @author Angela Julieth Ossa Cuellar
  */
 public interface ILibraryForm {
+
 
     public void Id();
     public String nameSong(String nameSong);

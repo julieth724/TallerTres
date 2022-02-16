@@ -9,19 +9,29 @@ import java.util.Date;
 
 
 /**
- *
- * @author jupag
+ *Clase que define la canción
+ * @author Angela Julieth Ossa Cuellar
  */
 public class Song implements ILibraryForm
          {
     private int id;
     private String nameSong;
-    private String creationDate;
+    public String creationDate;
     private int duration;
     private String genre;
     private String careName;
     private String description;
 
+             /**
+              * Definición de los parametros
+              * @param id :  identificador de la canción
+              * @param nameSong nombre de la Canción
+              * @param creationDate Años de ccreacion de la Canción
+              * @param duration Duracion en min de la canción
+              * @param genre genero musical de la canción
+              * @param careName Caratula de la Canción
+              * @param description descripcion corta
+              */
 
     public Song(int id, String nameSong, String creationDate, int duration, String genre, String careName, String description) {
         this.id = id;
@@ -33,6 +43,10 @@ public class Song implements ILibraryForm
         this.description = description;
     }
 
+             /**
+              * CReacion de metodos Getter and Setter
+              * @return retorno del parametro
+              */
     public int getId() {
         return id;
     }
@@ -94,6 +108,9 @@ public class Song implements ILibraryForm
 
         }
 
+             /**
+              * Reesccritura de metodos de la interface
+              */
     @Override
     public void Id() {
 
