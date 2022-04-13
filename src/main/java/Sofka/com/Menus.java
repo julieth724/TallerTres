@@ -50,7 +50,7 @@ public class Menus {
     }
 
     /**
-     * Metodo para el menú de la play list adiere y muestra canciones
+     * Método para el menú de la play list adiere y muestra canciones
      */
 
     public static  void playListMenu() {

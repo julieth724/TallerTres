@@ -1,5 +1,6 @@
 package Sofka.com;
 
+import java.util.ArrayList;
 import java.util.*;
 /**
  *Clase para definir comportamientos del reproductor
@@ -10,10 +11,10 @@ public class MediaPlayer{
     public static UUID id = UUID.randomUUID();
     public static PlayList currentPlaylist;
     public static ArrayList<PlayList> playLists = new ArrayList<>();
-    public static ArrayList<PlayList> sortSongList = new ArrayList<>();
 
     /**
-     * metodos getter and setter de la clase
+     *
+     * métodos getter and setter de la clase
      * @return
      */
 
@@ -38,7 +39,7 @@ public class MediaPlayer{
     }
 
     /**
-     * metodo para dar un alto y continuar a los menus
+     * método para dar un alto y continuar a los menus
      */
     public static void next () {
         try {
@@ -52,7 +53,7 @@ public class MediaPlayer{
     }
 
     /**
-     * metodo para construir el arreglo donde se incluye la playlist
+     * método para construir el arreglo donde se incluye la playlist
      */
          public static void createPlayList() {
         try {
@@ -64,12 +65,12 @@ public class MediaPlayer{
             playLists.add(newPlayList);
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo error de conexión");
         }
     }
 
     /**
-     * metodo para ver la playlis´s creadas
+     * método para ver la playlit's creadas
      */
     public static void  seePlayLists() {
         try {
@@ -88,7 +89,7 @@ public class MediaPlayer{
     }
 
     /**
-     * metodo que muestra las listas de caniones en la playlist
+     * método que muestra las listas de caniones en la playlist
      */
     public static void  seeSongPlayLists() {
         try {
