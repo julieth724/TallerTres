@@ -16,10 +16,12 @@ public class Menus {
             System.out.println("Welcome to the Media Player");
             System.out.println("Select the desired option");
 
-            System.out.println("1. Create your Playlist");
-            System.out.println("2. view your Playlists");
+            System.out.println("1. view your music library");
+            System.out.println("2. Create your Playlist");
+            System.out.println("3. view your Playlists");
+
             if (MediaPlayer.playLists.size() > 0) {
-                System.out.println("3. pick Playlists");
+                System.out.println("4. pick Playlists");
             }
 
             System.out.println("0. Exit");
@@ -29,12 +31,15 @@ public class Menus {
 
             switch (option) {
                 case "1":
-                    MediaPlayer.createPlayList();
+                   MediaPlayer.seeTheSong();
                     break;
                 case "2":
-                    MediaPlayer.seePlayLists();
+                    MediaPlayer.createPlayList();
                     break;
                 case "3":
+                    MediaPlayer.seePlayLists();
+                    break;
+                case "4":
                     MediaPlayer.pickAPlayList();
                     break;
                 case "0":
@@ -93,11 +98,11 @@ public class Menus {
     }
 
     /**
-     * Memú para ejecutar los fltro por año, y genero y ordenar por año y duración
+     * Memú para ejecutar los filtro por año, y genero y ordenar por año y duración
       */
-    private static  void filterMenu() {
+    public static  void filterMenu() {
         try {
-            System.out.println("You are on " + MediaPlayer.currentPlaylist.getName() + " playList");
+
             System.out.println("Please choose an option");
             System.out.println("-----------------------------------------------------");
             System.out.println("1. filter by year");
@@ -111,7 +116,8 @@ public class Menus {
             String option = sc.nextLine();
             switch (option) {
                 case "1":
-                    MediaPlayer.filterTheSongByYear();
+                    System.out.println("pendiente del avance del compañero<");
+                    MediaPlayer.next();
                     break;
                 case "2":
                     MediaPlayer.filterTheSongByGenre();
@@ -135,7 +141,7 @@ public class Menus {
                     MediaPlayer.next();
             }
         }catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println(e);
         }
 
     }

@@ -2,6 +2,9 @@ package Sofka.com;
 
 import java.util.ArrayList;
 import java.util.*;
+
+import static Sofka.com.Menus.filterMenu;
+
 /**
  *Clase para definir comportamientos del reproductor
  * @author Angela Julieth Ossa Cuellar
@@ -10,6 +13,7 @@ import java.util.*;
 public class MediaPlayer{
     public static UUID id = UUID.randomUUID();
     public static PlayList currentPlaylist;
+    public static PlayList availableSong;
     public static ArrayList<PlayList> playLists = new ArrayList<>();
 
     /**
@@ -52,6 +56,31 @@ public class MediaPlayer{
         }
     }
 
+    public static void nextFilter () {
+        try {
+            System.out.println("-----------------------------------------------------");
+            System.out.println("1. Filter your music library");
+            System.out.println("2. Order your music library ");
+            System.out.println("0. Go back");
+            System.out.println("-----------------------------------------------------");
+            Scanner sc = new Scanner(System.in);
+            String option = sc.nextLine();
+            switch (option) {
+                case "1":
+                    filterMenu();
+                    break;
+                case "2":
+                  break;
+                default:
+                    System.out.println("Please select a correct answer");
+                    MediaPlayer.next();
+            }
+        }catch (Exception e) {
+            System.out.println("se produjo error de conexión");
+        }
+    }
+
+
     /**
      * método para construir el arreglo donde se incluye la playlist
      */
@@ -70,7 +99,7 @@ public class MediaPlayer{
     }
 
     /**
-     * método para ver la playlit's creadas
+     * método para ver la playlist creadas
      */
     public static void  seePlayLists() {
         try {
@@ -108,7 +137,7 @@ public class MediaPlayer{
     }
 
     /**
-     * metodo que escoge o selecciona la playlist
+     * método que escoge o selecciona la playlist
      */
     public static void  pickAPlayList() {
         try {
@@ -146,7 +175,20 @@ public class MediaPlayer{
             System.out.println("se produjo error de conexion");
         }
     }
-
+    public static void seeTheSong(){
+        try {
+            System.out.println("Library ");
+            System.out.println("-----------------------------------------------------");
+            ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+            for (int i = 0; i < availableSongs.size(); i++) {
+                System.out.println(i + ". " + availableSongs.get(i).getNameSong() + " Created in " + availableSongs.get(i).getCreationDate()+" Genre "+availableSongs.get(i).getGenre());
+            }
+            System.out.println("-----------------------------------------------------");
+           nextFilter();
+        }catch (Exception e) {
+            System.out.println("se produjo error de conexión");
+        }
+    }
     /**
      * metodo que da inicio a la aplicación
      */
@@ -179,9 +221,12 @@ public class MediaPlayer{
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo error de conexión");
         }
     }
+
+
+
     /**
      * metodo para filtrar las canciones por genero
      */

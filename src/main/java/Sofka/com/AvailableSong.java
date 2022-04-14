@@ -19,7 +19,7 @@ public class AvailableSong {
             availableSong.add(new Song(5, "El incomprendido", "1980", 3, "SALSA", "imag.png", "excelente banda"));
             availableSong.add(new Song(6, "Mi otro yo", "1991", 5, "SALSA", "imag.png", "excelente banda"));
             availableSong.add(new Song(7, "Mi desengaño", "1999", 4, "SALSA", "imag.png", "excelente banda"));
-            availableSong.add(new Song(8, "La agonia", "1998", 4, "SALSA", "imag.png", "excelente banda"));
+            availableSong.add(new Song(8, "La agonía", "1998", 4, "SALSA", "imag.png", "excelente banda"));
             availableSong.add(new Song(9, "Vida de Rico", "1990", 3, "POP", "imag.png", "excelente banda"));
             availableSong.add(new Song(10, "Mientes", "1998", 3, "POP", "imag.png", "excelente banda"));
             availableSong.add(new Song(11, "Fuiste tu", "2015", 3, "POP", "imag.png", "excelente banda"));
@@ -28,8 +28,13 @@ public class AvailableSong {
 
 
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo error de conexión");
         }
         return null;
+
+
     }
+
+
+
 }

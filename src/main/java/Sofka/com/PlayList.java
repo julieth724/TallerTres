@@ -16,7 +16,7 @@ import static java.util.stream.Collectors.*;
 
 public class PlayList {
     /**
-     * Definicion de atributos de la clase
+     * Definición de atributos de la clase
      */
 
     public UUID id;
@@ -37,7 +37,7 @@ public class PlayList {
 
     /**
      * Getter and Setter de la clase
-     * @return retorna parametro
+     * @return retorna parámetro
      */
 
     public UUID getId() {
@@ -62,7 +62,7 @@ public class PlayList {
     /**
      * Metodo para ordenar cancion por año y por duración
      * @param type duration
-     * @return la comparacíon
+     * @return la comparación
      */
 
     public ArrayList<Song> sortSongList (String type) {
