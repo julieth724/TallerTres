@@ -12,6 +12,7 @@ import static java.util.stream.Collectors.*;
 /**
  *Clase para definir comportamientos de la play list
  * @author Angela Julieth Ossa Cuellar
+ * @author Carlos A. Valencia
  */
 
 public class PlayList {
@@ -64,18 +65,31 @@ public class PlayList {
      * @param type duration
      * @return la comparación
      */
+    //public ArrayList<Song> sortSongList (String type) {
+        //if (type.equals("duration")) {
+            //this.songList.sort((o1, o2) -> {
+                //String nDuration1 = String.valueOf(o1.getDuration());
+              //  String nDuration2 = String.valueOf(o2.getDuration());
+            //    return nDuration1.compareTo(nDuration2);
+          //  });
+        //} else if (type.equals("year")) {
+          //  this.songList.sort(Comparator.comparing(Song::getCreationDate));
+        //}
+      //  return this.songList;
+    //}
 
     public ArrayList<Song> sortSongList (String type) {
+        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
         if (type.equals("duration")) {
-            this.songList.sort((o1, o2) -> {
+            availableSongs.sort((o1, o2) -> {
                 String nDuration1 = String.valueOf(o1.getDuration());
                 String nDuration2 = String.valueOf(o2.getDuration());
                 return nDuration1.compareTo(nDuration2);
             });
         } else if (type.equals("year")) {
-            this.songList.sort(Comparator.comparing(Song::getCreationDate));
+            availableSongs.sort(Comparator.comparing(Song::getCreationDate));
         }
-        return this.songList;
+        return availableSongs;
     }
 
     /**
@@ -83,10 +97,14 @@ public class PlayList {
      * @param genre
      * @return arreglo con canciones filtradas
      */
+ //   public ArrayList<Song> getByGenre (String genre){
+   //     List<Song> listSong = this.songList.stream().filter(song-> song.getGenre().equals(genre)).collect(toList());
+     //  return new ArrayList<>(listSong);
+    //}
 
-    public ArrayList<Song> getByGenre (String genre){
-        List<Song> listSong = this.songList.stream().filter(song-> song.getGenre().equals(genre)).collect(toList());
-       return new ArrayList<>(listSong);
+    public  ArrayList<Song> getByGenre (String genre) {
+        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+        return availableSongs.stream().filter(song -> song.getGenre().equals(genre)).collect(Collectors.toCollection(ArrayList::new));
     }
     /**
      * Metodo para filtra por Año
