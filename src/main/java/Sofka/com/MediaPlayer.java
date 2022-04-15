@@ -13,8 +13,8 @@ import static Sofka.com.Menus.filterMenu;
 public class MediaPlayer{
     public static UUID id = UUID.randomUUID();
     public static PlayList currentPlaylist;
-    public static PlayList availableSong;
     public static ArrayList<PlayList> playLists = new ArrayList<>();
+    public AvailableSong filter;
 
     /**
      *
@@ -172,7 +172,7 @@ public class MediaPlayer{
             System.out.println("the song is added");
             next();
         }catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo error de conexión");
         }
     }
     public static void seeTheSong(){
@@ -225,8 +225,25 @@ public class MediaPlayer{
         }
     }
 
+    public static void filterTheSongByYearL(){
+        try {
 
+            System.out.println("_____________________________________________________");
+            System.out.println("enter the year of your songs");
+            System.out.println("_____________________________________________________");
+            Scanner yr = new Scanner(System.in);
+            String year = yr.nextLine();
+            System.out.println("these are your Song");
+            System.out.println("-----------------------------------------------------");
+            PlayList filtro = new PlayList(year);
 
+            filtro.getByCreationDateL(year).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() ));
+            System.out.println("-----------------------------------------------------");
+            next();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     /**
      * metodo para filtrar las canciones por genero
      */

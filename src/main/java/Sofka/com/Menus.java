@@ -116,7 +116,9 @@ public class Menus {
             String option = sc.nextLine();
             switch (option) {
                 case "1":
-                    System.out.println("pendiente del avance del compañero<");
+
+                    System.out.println("pendiente del avance del compañero");
+                    MediaPlayer.filterTheSongByYearL();
                     MediaPlayer.next();
                     break;
                 case "2":

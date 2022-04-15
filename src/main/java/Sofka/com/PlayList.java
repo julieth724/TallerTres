@@ -60,7 +60,7 @@ public class PlayList {
     }
 
     /**
-     * Metodo para ordenar cancion por año y por duración
+     * Metodo para ordenar canción por año y por duración
      * @param type duration
      * @return la comparación
      */
@@ -93,7 +93,11 @@ public class PlayList {
      * @param creationDate
      * @return arreglo con canciones filtradas
      */
-    public ArrayList<Song> getByCreationDate (String creationDate){
-        return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
+    public  ArrayList<Song> getByCreationDate (String creationDate){
+           return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
+    }
+    public  ArrayList<Song> getByCreationDateL (String creationDate){
+        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+        return availableSongs.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
     }
 }
