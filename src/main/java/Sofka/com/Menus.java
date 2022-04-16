@@ -155,7 +155,6 @@ public class Menus {
             System.out.println("2. filter by genre");
             System.out.println("3. See order by Year");
             System.out.println("4. See order by Duration");
-            System.out.println("5. see all");
             System.out.println("0. Go back");
             System.out.println("-----------------------------------------------------");
             Scanner sc = new Scanner(System.in);
@@ -172,10 +171,7 @@ public class Menus {
                     MediaPlayer.orderByYearL();
                     break;
                 case "4":
-                    MediaPlayer.orderByDuration();
-                    break;
-                case "5":
-                    MediaPlayer.seeSongPlayLists();
+                    MediaPlayer.orderByDurationL();
                     break;
                 case "0":
                     System.out.println("Going back....");
@@ -187,7 +183,7 @@ public class Menus {
                     MediaPlayer.next();
             }
         } catch (Exception e) {
-            System.out.println("Error o falla");
+            System.out.println(e);
         }
 
     }

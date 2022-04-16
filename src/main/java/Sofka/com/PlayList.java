@@ -97,7 +97,7 @@ public class PlayList {
     }
 
     /**
-     * Metodo para filtra por genero
+     * Método para filtra por genero
      *
      * @param genre
      * @return arreglo con canciones filtradas
@@ -105,11 +105,6 @@ public class PlayList {
     public ArrayList<Song> getByGenre(String genre) {
         List<Song> listSong = this.songList.stream().filter(song -> song.getGenre().equals(genre)).collect(toList());
         return new ArrayList<>(listSong);
-    }
-
-    public ArrayList<Song> getByGenreL(String genre) {
-        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
-        return availableSongs.stream().filter(song -> song.getGenre().equals(genre)).collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -122,8 +117,4 @@ public class PlayList {
         return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Song> getByCreationDateL(String creationDate) {
-        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
-        return availableSongs.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
-    }
 }

@@ -1,6 +1,9 @@
 package Sofka.com;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
 /**
  *Clase para definir el arreglo de canciones pre existentes
  * @author Angela Julieth Ossa Cuellar
@@ -38,6 +41,27 @@ public class AvailableSong {
 
     }
 
+    public static ArrayList<Song> getByCreationDateL(String creationDate) {
+        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+        return availableSongs.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
+    }
 
+    public static ArrayList<Song> getByGenreL(String genre) {
+        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+        return availableSongs.stream().filter(song -> song.getGenre().equals(genre)).collect(Collectors.toCollection(ArrayList::new));
+    }
+    public static ArrayList<Song> sortSongList(String type) {
+        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+        if (type.equals("duration")) {
+            availableSongs.sort((o1, o2) -> {
+                String nDuration1 = String.valueOf(o1.getDuration());
+                String nDuration2 = String.valueOf(o2.getDuration());
+                return nDuration1.compareTo(nDuration2);
+            });
+        } else if (type.equals("year")) {
+            availableSongs.sort(Comparator.comparing(Song::getCreationDate));
+        }
+        return availableSongs;
+    }
 
 }

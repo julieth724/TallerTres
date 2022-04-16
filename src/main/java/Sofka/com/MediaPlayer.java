@@ -238,8 +238,7 @@ public class MediaPlayer {
             String year = yr.nextLine();
             System.out.println("these are your Song");
             System.out.println("-----------------------------------------------------");
-            PlayList filtro = new PlayList(year);
-            filtro.getByCreationDateL(year).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre()));
+            AvailableSong.getByCreationDateL(year).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre()));
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
@@ -278,8 +277,7 @@ public class MediaPlayer {
             String genre = gr.nextLine();
             System.out.println("these are your Song");
             System.out.println("-----------------------------------------------------");
-            PlayList filtro = new PlayList(genre);
-            filtro.getByGenreL(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+            AvailableSong.getByGenreL(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
@@ -300,11 +298,9 @@ public class MediaPlayer {
     }
 
     public static void orderByYearL() {
-        ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
-        PlayList filtro = new PlayList("year");
         System.out.println("these are the Songs");
         System.out.println("-----------------------------------------------------");
-        filtro.sortSongList("year").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+        AvailableSong.sortSongList("year").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
         next();
     }
 
@@ -315,7 +311,15 @@ public class MediaPlayer {
 
         System.out.println("these are your Song");
         System.out.println("-----------------------------------------------------");
-        currentPlaylist.sortSongList("duration").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+        currentPlaylist.sortSongListPl("duration").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+        next();
+    }
+
+    public static void orderByDurationL() {
+
+        System.out.println("these are the Songs");
+        System.out.println("-----------------------------------------------------");
+        AvailableSong.sortSongList("duration").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
         next();
     }
 
