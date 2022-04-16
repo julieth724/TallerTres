@@ -3,7 +3,8 @@ package Sofka.com;
 import java.util.Scanner;
 
 /**
- *Clase para ejecutar metodos que funcionan como Menus
+ * Clase para ejecutar metodos que funcionan como Menus
+ *
  * @author Angela Julieth Ossa Cuellar
  */
 
@@ -11,7 +12,7 @@ public class Menus {
     /**
      * Metodo del menu principal
      */
-    public static void mainMenu(){
+    public static void mainMenu() {
         try {
             System.out.println("Welcome to the Media Player");
             System.out.println("Select the desired option");
@@ -31,7 +32,7 @@ public class Menus {
 
             switch (option) {
                 case "1":
-                   MediaPlayer.seeTheSong();
+                    MediaPlayer.seeTheSong();
                     break;
                 case "2":
                     MediaPlayer.createPlayList();
@@ -49,7 +50,7 @@ public class Menus {
                     System.out.println("Please select a correct answer");
                     MediaPlayer.next();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("se produjo error de conexion");
         }
     }
@@ -58,7 +59,7 @@ public class Menus {
      * Método para el menú de la play list adiere y muestra canciones
      */
 
-    public static  void playListMenu() {
+    public static void playListMenu() {
         try {
             System.out.println("You are on " + MediaPlayer.currentPlaylist.getName() + " playList");
             System.out.println("Please choose an option");
@@ -80,7 +81,7 @@ public class Menus {
                     MediaPlayer.seeSongPlayLists();
                     break;
                 case "3":
-                    filterMenu();
+                    filterMenuPlayList();
                     break;
                 case "0":
                     System.out.println("Going back....");
@@ -91,7 +92,7 @@ public class Menus {
                     System.out.println("Please select a correct answer");
                     MediaPlayer.next();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("se produjo error de conexion");
         }
 
@@ -99,8 +100,8 @@ public class Menus {
 
     /**
      * Memú para ejecutar los filtro por año, y genero y ordenar por año y duración
-      */
-    public static  void filterMenu() {
+     */
+    public static void filterMenuPlayList() {
         try {
 
             System.out.println("Please choose an option");
@@ -116,9 +117,7 @@ public class Menus {
             String option = sc.nextLine();
             switch (option) {
                 case "1":
-
-                    System.out.println("pendiente del avance del compañero");
-                    MediaPlayer.filterTheSongByYearL();
+                    MediaPlayer.filterTheSongByYear();
                     MediaPlayer.next();
                     break;
                 case "2":
@@ -142,10 +141,54 @@ public class Menus {
                     System.out.println("Please select a correct answer");
                     MediaPlayer.next();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public static void filterMenu() {
+        try {
+
+            System.out.println("Please choose an option");
+            System.out.println("-----------------------------------------------------");
+            System.out.println("1. filter by year");
+            System.out.println("2. filter by genre");
+            System.out.println("3. See order by Year");
+            System.out.println("4. See order by Duration");
+            System.out.println("5. see all");
+            System.out.println("0. Go back");
+            System.out.println("-----------------------------------------------------");
+            Scanner sc = new Scanner(System.in);
+            String option = sc.nextLine();
+            switch (option) {
+                case "1":
+                    MediaPlayer.filterTheSongByYearL();
+                    MediaPlayer.next();
+                    break;
+                case "2":
+                    MediaPlayer.filterTheSongByGenreL();
+                    break;
+                case "3":
+                    MediaPlayer.orderByYearL();
+                    break;
+                case "4":
+                    MediaPlayer.orderByDuration();
+                    break;
+                case "5":
+                    MediaPlayer.seeSongPlayLists();
+                    break;
+                case "0":
+                    System.out.println("Going back....");
+                    MediaPlayer.currentPlaylist = null;
+                    MediaPlayer.next();
+                    break;
+                default:
+                    System.out.println("Please select a correct answer");
+                    MediaPlayer.next();
+            }
+        } catch (Exception e) {
+            System.out.println("Error o falla");
         }
 
     }
-
 }

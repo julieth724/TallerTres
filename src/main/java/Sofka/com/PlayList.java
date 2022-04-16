@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.*;
 
 /**
- *Clase para definir comportamientos de la play list
+ * Clase para definir comportamientos de la play list
+ *
  * @author Angela Julieth Ossa Cuellar
  * @author Carlos A. Valencia
  */
@@ -38,6 +39,7 @@ public class PlayList {
 
     /**
      * Getter and Setter de la clase
+     *
      * @return retorna parámetro
      */
 
@@ -56,29 +58,31 @@ public class PlayList {
     public ArrayList<Song> getSongList() {
         return songList;
     }
-    public void addSong (Song song){
-     this.songList.add(song);
+
+    public void addSong(Song song) {
+        this.songList.add(song);
     }
 
     /**
      * Metodo para ordenar canción por año y por duración
+     *
      * @param type duration
      * @return la comparación
      */
-    //public ArrayList<Song> sortSongList (String type) {
-        //if (type.equals("duration")) {
-            //this.songList.sort((o1, o2) -> {
-                //String nDuration1 = String.valueOf(o1.getDuration());
-              //  String nDuration2 = String.valueOf(o2.getDuration());
-            //    return nDuration1.compareTo(nDuration2);
-          //  });
-        //} else if (type.equals("year")) {
-          //  this.songList.sort(Comparator.comparing(Song::getCreationDate));
-        //}
-      //  return this.songList;
-    //}
+    public ArrayList<Song> sortSongListPl(String type) {
+        if (type.equals("duration")) {
+            this.songList.sort((o1, o2) -> {
+                String nDuration1 = String.valueOf(o1.getDuration());
+                String nDuration2 = String.valueOf(o2.getDuration());
+                return nDuration1.compareTo(nDuration2);
+            });
+        } else if (type.equals("year")) {
+            this.songList.sort(Comparator.comparing(Song::getCreationDate));
+        }
+        return this.songList;
+    }
 
-    public ArrayList<Song> sortSongList (String type) {
+    public ArrayList<Song> sortSongList(String type) {
         ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
         if (type.equals("duration")) {
             availableSongs.sort((o1, o2) -> {
@@ -94,27 +98,31 @@ public class PlayList {
 
     /**
      * Metodo para filtra por genero
+     *
      * @param genre
      * @return arreglo con canciones filtradas
      */
- //   public ArrayList<Song> getByGenre (String genre){
-   //     List<Song> listSong = this.songList.stream().filter(song-> song.getGenre().equals(genre)).collect(toList());
-     //  return new ArrayList<>(listSong);
-    //}
+    public ArrayList<Song> getByGenre(String genre) {
+        List<Song> listSong = this.songList.stream().filter(song -> song.getGenre().equals(genre)).collect(toList());
+        return new ArrayList<>(listSong);
+    }
 
-    public  ArrayList<Song> getByGenre (String genre) {
+    public ArrayList<Song> getByGenreL(String genre) {
         ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
         return availableSongs.stream().filter(song -> song.getGenre().equals(genre)).collect(Collectors.toCollection(ArrayList::new));
     }
+
     /**
      * Metodo para filtra por Año
+     *
      * @param creationDate
      * @return arreglo con canciones filtradas
      */
-    public  ArrayList<Song> getByCreationDate (String creationDate){
-           return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
+    public ArrayList<Song> getByCreationDate(String creationDate) {
+        return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
     }
-    public  ArrayList<Song> getByCreationDateL (String creationDate){
+
+    public ArrayList<Song> getByCreationDateL(String creationDate) {
         ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
         return availableSongs.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
     }

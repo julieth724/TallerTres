@@ -3,6 +3,7 @@ package Sofka.com;
 import java.util.ArrayList;
 import java.util.*;
 
+import static Sofka.com.Menus.filterMenuPlayList;
 import static Sofka.com.Menus.filterMenu;
 
 /**
@@ -23,7 +24,6 @@ public class MediaPlayer {
      *
      * @return
      */
-
     public UUID getId() {
         return id;
     }
@@ -61,8 +61,8 @@ public class MediaPlayer {
     public static void nextFilter() {
         try {
             System.out.println("-----------------------------------------------------");
-            System.out.println("1. Filter your music library");
-            System.out.println("2. Order your music library ");
+            System.out.println("1. Filter or sort your music library");
+//            System.out.println("2. Order your music library ");
             System.out.println("0. Go back");
             System.out.println("-----------------------------------------------------");
             Scanner sc = new Scanner(System.in);
@@ -71,8 +71,8 @@ public class MediaPlayer {
                 case "1":
                     filterMenu();
                     break;
-                case "2":
-                    break;
+                //  case "2":
+                //    break;
                 default:
                     System.out.println("Please select a correct answer");
                     MediaPlayer.next();
@@ -239,7 +239,6 @@ public class MediaPlayer {
             System.out.println("these are your Song");
             System.out.println("-----------------------------------------------------");
             PlayList filtro = new PlayList(year);
-
             filtro.getByCreationDateL(year).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre()));
             System.out.println("-----------------------------------------------------");
             next();
@@ -247,10 +246,6 @@ public class MediaPlayer {
             System.out.println(e);
         }
     }
-
-    /**
-     * metodo para filtrar las canciones por genero
-     */
 
     public static void filterTheSongByGenre() {
 
@@ -262,8 +257,29 @@ public class MediaPlayer {
             String genre = gr.nextLine();
             System.out.println("these are your Song");
             System.out.println("-----------------------------------------------------");
+            currentPlaylist.getByGenre(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre()));
+            System.out.println("-----------------------------------------------------");
+            //next();
+        } catch (Exception e) {
+            System.out.println("se produjo error de conexion");
+        }
+    }
+
+    /**
+     * metodo para filtrar las canciones por genero
+     */
+    public static void filterTheSongByGenreL() {
+
+        try {
+            System.out.println("_____________________________________________________");
+            System.out.println("enter the genre of your songs in capital letters");
+            System.out.println("_____________________________________________________");
+            Scanner gr = new Scanner(System.in);
+            String genre = gr.nextLine();
+            System.out.println("these are your Song");
+            System.out.println("-----------------------------------------------------");
             PlayList filtro = new PlayList(genre);
-            filtro.getByGenre(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+            filtro.getByGenreL(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
@@ -275,14 +291,15 @@ public class MediaPlayer {
     /**
      * metodo para ordenar la lista por año
      */
-    //public static void orderByYear(){
-//
-    //      System.out.println("these are your Song");
-    //    System.out.println("-----------------------------------------------------");
-    //  currentPlaylist.sortSongList("year").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
-    //  next();
-    //}
     public static void orderByYear() {
+
+        System.out.println("these are your Song");
+        System.out.println("-----------------------------------------------------");
+        currentPlaylist.sortSongListPl("year").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
+        next();
+    }
+
+    public static void orderByYearL() {
         ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
         PlayList filtro = new PlayList("year");
         System.out.println("these are the Songs");
