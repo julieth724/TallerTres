@@ -6,8 +6,8 @@ import java.util.Scanner;
  * Clase para ejecutar metodos que funcionan como Menus
  *
  * @author Angela Julieth Ossa Cuellar
+ * @author Carlos A. Valencia
  */
-
 public class Menus {
     /**
      * Metodo del menu principal
@@ -51,14 +51,13 @@ public class Menus {
                     MediaPlayer.next();
             }
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo error cargando el menú.");
         }
     }
 
     /**
      * Método para el menú de la play list adiere y muestra canciones
      */
-
     public static void playListMenu() {
         try {
             System.out.println("You are on " + MediaPlayer.currentPlaylist.getName() + " playList");
@@ -93,7 +92,7 @@ public class Menus {
                     MediaPlayer.next();
             }
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo un error al cargar el menú de playList");
         }
 
     }
@@ -142,7 +141,7 @@ public class Menus {
                     MediaPlayer.next();
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Se produjo un error al cargar el menú de opciones.");
         }
     }
 
@@ -183,8 +182,7 @@ public class Menus {
                     MediaPlayer.next();
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Se produjo un error al cargar el menú de opciones.");
         }
-
     }
 }

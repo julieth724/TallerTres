@@ -1,9 +1,9 @@
 package Sofka.com;
 
 import java.util.ArrayList;
-import java.util.*;
+import java.util.Scanner;
+import java.util.UUID;
 
-import static Sofka.com.Menus.filterMenuPlayList;
 import static Sofka.com.Menus.filterMenu;
 
 /**
@@ -12,17 +12,15 @@ import static Sofka.com.Menus.filterMenu;
  * @author Angela Julieth Ossa Cuellar
  * @author Carlos A. Valencia
  */
-
 public class MediaPlayer {
     public static UUID id = UUID.randomUUID();
     public static PlayList currentPlaylist;
     public static ArrayList<PlayList> playLists = new ArrayList<>();
-    // public AvailableSong filter;
 
     /**
      * métodos getter and setter de la clase
      *
-     * @return
+     * @return retorna el Id.
      */
     public UUID getId() {
         return id;
@@ -54,7 +52,7 @@ public class MediaPlayer {
             String response = sc.next();
             run();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo error");
         }
     }
 
@@ -62,7 +60,6 @@ public class MediaPlayer {
         try {
             System.out.println("-----------------------------------------------------");
             System.out.println("1. Filter or sort your music library");
-//            System.out.println("2. Order your music library ");
             System.out.println("0. Go back");
             System.out.println("-----------------------------------------------------");
             Scanner sc = new Scanner(System.in);
@@ -71,14 +68,12 @@ public class MediaPlayer {
                 case "1":
                     filterMenu();
                     break;
-                //  case "2":
-                //    break;
                 default:
                     System.out.println("Please select a correct answer");
                     MediaPlayer.next();
             }
         } catch (Exception e) {
-            System.out.println("se produjo error de conexión");
+            System.out.println("se produjo un error de conexión.");
         }
     }
 
@@ -96,7 +91,7 @@ public class MediaPlayer {
             playLists.add(newPlayList);
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexión");
+            System.out.println("se produjo un error para construir la playList.");
         }
     }
 
@@ -115,12 +110,12 @@ public class MediaPlayer {
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo un error cargando las listas");
         }
     }
 
     /**
-     * método que muestra las listas de caniones en la playlist
+     * método que muestra las listas de canciones en la playlist
      */
     public static void seeSongPlayLists() {
         try {
@@ -134,7 +129,7 @@ public class MediaPlayer {
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo un error cargando la lista de canciones.");
         }
     }
 
@@ -152,7 +147,7 @@ public class MediaPlayer {
             currentPlaylist = playLists.get(indexListInt);
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo un error seleccionando la lista.");
         }
     }
 
@@ -174,7 +169,7 @@ public class MediaPlayer {
             System.out.println("the song is added");
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexión");
+            System.out.println("se produjo un error agregando la canción.");
         }
     }
 
@@ -189,7 +184,7 @@ public class MediaPlayer {
             System.out.println("-----------------------------------------------------");
             nextFilter();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexión");
+            System.out.println("se produjo un error al mostrar la biblioteca");
         }
     }
 
@@ -204,7 +199,7 @@ public class MediaPlayer {
                 Menus.playListMenu();
             }
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo un error al arrancar la app");
         }
     }
 
@@ -224,7 +219,7 @@ public class MediaPlayer {
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexión");
+            System.out.println("se produjo un error al filtrar");
         }
     }
 
@@ -242,7 +237,7 @@ public class MediaPlayer {
             System.out.println("-----------------------------------------------------");
             next();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("se produjo un error al filtrar");
         }
     }
 
@@ -258,14 +253,14 @@ public class MediaPlayer {
             System.out.println("-----------------------------------------------------");
             currentPlaylist.getByGenre(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre()));
             System.out.println("-----------------------------------------------------");
-            //next();
+            next();
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo un error al filtrar");
         }
     }
 
     /**
-     * metodo para filtrar las canciones por genero
+     * método para filtrar las canciones por género
      */
     public static void filterTheSongByGenreL() {
 
@@ -275,15 +270,21 @@ public class MediaPlayer {
             System.out.println("_____________________________________________________");
             Scanner gr = new Scanner(System.in);
             String genre = gr.nextLine();
+            if (genre != "ROCK" || genre != "SALSA" || genre != "POP")
+            {
+                System.out.println("Este género no esta disponible.");
+                System.out.println("Sólo están disponibles: ROCK, SALSA Y POP");
+                next();
+            }else{
             System.out.println("these are your Song");
             System.out.println("-----------------------------------------------------");
             AvailableSong.getByGenreL(genre).forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
             System.out.println("-----------------------------------------------------");
             next();
+            }
         } catch (Exception e) {
-            System.out.println("se produjo error de conexion");
+            System.out.println("se produjo un error al filtrar");
         }
-
     }
 
     /**
@@ -322,7 +323,5 @@ public class MediaPlayer {
         AvailableSong.sortSongList("duration").forEach(song -> System.out.println("* " + song.getNameSong() + " Created in " + song.getCreationDate() + " Genre " + song.getGenre() + " Duration " + song.getDuration()));
         next();
     }
-
-
 }
 

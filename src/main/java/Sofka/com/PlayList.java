@@ -17,10 +17,10 @@ import static java.util.stream.Collectors.*;
  */
 
 public class PlayList {
+
     /**
      * Definición de atributos de la clase
      */
-
     public UUID id;
     public String name;
     public ArrayList<Song> songList;
@@ -97,7 +97,7 @@ public class PlayList {
     }
 
     /**
-     * Método para filtra por genero
+     * Método para filtrar por genero
      *
      * @param genre
      * @return arreglo con canciones filtradas
@@ -108,7 +108,7 @@ public class PlayList {
     }
 
     /**
-     * Metodo para filtra por Año
+     * Metodo para filtrar por Año
      *
      * @param creationDate
      * @return arreglo con canciones filtradas
@@ -116,5 +116,4 @@ public class PlayList {
     public ArrayList<Song> getByCreationDate(String creationDate) {
         return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
     }
-
 }
