@@ -114,6 +114,7 @@ public class PlayList {
      * @return arreglo con canciones filtradas
      */
     public ArrayList<Song> getByCreationDate(String creationDate) {
-        return this.songList.stream().filter(song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
+        return this.songList.stream().filter
+                (song -> song.getCreationDate().equals(creationDate)).collect(Collectors.toCollection(ArrayList::new));
     }
 }
