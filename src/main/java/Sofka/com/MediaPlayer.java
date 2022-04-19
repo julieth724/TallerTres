@@ -1,6 +1,7 @@
 package Sofka.com;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -276,7 +277,8 @@ public class MediaPlayer {
             System.out.println("_____________________________________________________");
             Scanner gr = new Scanner(System.in);
             String genre = gr.nextLine();
-            if (genre != "ROCK" || genre != "SALSA" || genre != "POP")
+            if (!Objects.equals(genre, "ROCK") && !Objects.equals(genre,
+                    "SALSA") && !Objects.equals(genre, "POP"))
             {
                 System.out.println("Este género no esta disponible.");
                 System.out.println("Sólo están disponibles: ROCK, SALSA Y POP");

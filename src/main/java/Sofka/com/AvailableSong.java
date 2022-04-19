@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 /**
  *Clase para definir el arreglo de canciones pre existentes
  * @author Angela Julieth Ossa Cuellar
+ * @author Carlos Valencia.
  */
 public class AvailableSong {
 

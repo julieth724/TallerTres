@@ -9,11 +9,11 @@ import java.util.Date;
 
 
 /**
- *Clase que define la canción
+ * Clase que define la canción
+ * @author Carlos A. Valencia
  * @author Angela Julieth Ossa Cuellar
  */
-public class Song implements ILibraryForm
-         {
+public class Song implements ILibraryForm {
     private int id;
     private String nameSong;
     public String creationDate;
@@ -22,16 +22,17 @@ public class Song implements ILibraryForm
     private String careName;
     private String description;
 
-             /**
-              * Definición de los parametros
-              * @param id :  identificador de la canción
-              * @param nameSong nombre de la Canción
-              * @param creationDate Años de ccreacion de la Canción
-              * @param duration Duracion en min de la canción
-              * @param genre genero musical de la canción
-              * @param careName Caratula de la Canción
-              * @param description descripcion corta
-              */
+    /**
+     * Definición de los parametros
+     *
+     * @param id           :  identificador de la canción
+     * @param nameSong     nombre de la Canción
+     * @param creationDate Años de ccreacion de la Canción
+     * @param duration     Duracion en min de la canción
+     * @param genre        genero musical de la canción
+     * @param careName     Caratula de la Canción
+     * @param description  descripcion corta
+     */
 
     public Song(int id, String nameSong, String creationDate,
                 int duration, String genre, String careName, String description) {
@@ -44,10 +45,10 @@ public class Song implements ILibraryForm
         this.description = description;
     }
 
-             /**
-              * CReacion de metodos Getter and Setter
-              * @return retorno del parametro
-              */
+    /**
+     * Creacion de metodos Getter and Setter
+     * @return retorno del parametro
+     */
     public int getId() {
         return id;
     }
@@ -104,14 +105,14 @@ public class Song implements ILibraryForm
         this.description = description;
     }
 
-    public void CreateLibrary(){
+    public void CreateLibrary() {
 
 
-        }
+    }
 
-             /**
-              * Reesccritura de metodos de la interface
-              */
+    /**
+     * Reesccritura de metodos de la interface
+     */
     @Override
     public void Id() {
 
