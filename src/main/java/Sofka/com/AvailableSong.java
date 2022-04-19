@@ -61,6 +61,7 @@ public class AvailableSong {
 
     public static ArrayList<Song> getByGenreL(String genre) {
         ArrayList<Song> availableSongs = AvailableSong.getAvailableSongs();
+
         return availableSongs.stream().filter(song -> song.getGenre().equals(genre)).collect(Collectors.
                 toCollection(ArrayList::new));
     }
